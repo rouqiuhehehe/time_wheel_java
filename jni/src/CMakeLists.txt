@@ -1,0 +1,14 @@
+aux_source_directory(. SOURCE_SRC)
+
+if (WIN32)
+    set(LIBRARY_OUTPUT_PREFIX "")
+else ()
+    set(LIBRARY_OUTPUT_PREFIX "Linux_")
+endif ()
+if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+    set(LIBRARY_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/lib/${LIBRARY_OUTPUT_PREFIX}Debug)
+elseif (CMAKE_BUILD_TYPE STREQUAL "Release")
+    set(LIBRARY_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/lib/${LIBRARY_OUTPUT_PREFIX}Release)
+endif ()
+
+add_library(${PROJECT_NAME} SHARED ${SOURCE_SRC})
